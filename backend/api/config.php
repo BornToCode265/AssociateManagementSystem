@@ -1,4 +1,11 @@
 <?php
+
+header("Access-Control-Allow-Origin: *");
+header('Content-Type: application/json');
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Access-Control-Allow-Headers: *");
+
+
 // Database configuration
 $host = "localhost";  // Change to your host
 $dbname = "associates_db";  // Database name to create

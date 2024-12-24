@@ -13,7 +13,7 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
             <div class="container-fluid d-flex flex-column p-0">
                 <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                     <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-users"></i></div>
@@ -36,7 +36,7 @@
                     <div class="container-fluid">
                         <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for Associates..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for Reports..."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <li class="nav-item dropdown no-arrow">
@@ -49,49 +49,52 @@
                 </nav>
                 <div class="container-fluid">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Associate Management Dashboard</h3>
-                        <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" data-bs-toggle="modal" data-bs-target="#addAssociateModal"><i class="fas fa-plus fa-sm text-white-50"></i>&nbsp;Add New Associate</a>
+                        <h3 class="text-dark mb-0">Reports</h3>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Associates Table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Reports Table</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Occupation</th>
-                                            <th>Location</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
+                                            <th>Report Name</th>
+                                            <th>Category</th>
+                                            <th>Date Generated</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Example row -->
                                         <tr>
-                                            <td>John Doe</td>
-                                            <td> Public Officer</td>
-                                            <td>Lilongwe, Malawi</td>
-                                            <td>hello@chaintechhub.com</td>
-                                            <td>+265 999 123 4567</td>
+                                            <td>Monthly Performance</td>
+                                            <td>Performance</td>
+                                            <td>November 15, 2024</td>
+                                            <td>Completed</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-primary mr-1" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></a>
+                                                <a href="#" class="btn btn-sm btn-primary mr-1" title="View"><i class="fas fa-eye"></i></a>
+                                                <a href="#" class="btn btn-sm btn-success" title="Download"><i class="fas fa-download"></i></a>
                                             </td>
                                         </tr>
-                                        <!-- Add more rows dynamically -->
-                                          <tr>
-                                            <td>Anifa Bonongwe</td>
-                                            <td>ICT</td>
-                                            <td>Mzuzu, Malawi</td>
-                                            <td>hello@chaintechhub.com</td>
-                                            <td>+265 888 123 4567</td>
+                                        <tr>
+                                            <td>Attendance Summary</td>
+                                            <td>Attendance</td>
+                                            <td>November 14, 2024</td>
+                                            <td>Pending</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-primary mr-1" title="Edit"><i class="fas fa-edit"></i></a>
-                                                <a href="#" class="btn btn-sm btn-danger" title="Delete"><i class="fas fa-trash"></i></a>
+                                                <a href="#" class="btn btn-sm btn-primary mr-1" title="View"><i class="fas fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Project Assignments</td>
+                                            <td>Projects</td>
+                                            <td>November 10, 2024</td>
+                                            <td>Completed</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-primary mr-1" title="View"><i class="fas fa-eye"></i></a>
+                                                <a href="#" class="btn btn-sm btn-success" title="Download"><i class="fas fa-download"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -108,48 +111,6 @@
             </footer>
         </div>
         <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
-
-    <!-- Add Associate Modal -->
-    <div class="modal fade" id="addAssociateModal" tabindex="-1" role="dialog" aria-labelledby="addAssociateModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addAssociateModalLabel">Add New Associate</h5>
-                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="associateName">Name</label>
-                            <input type="text" class="form-control" id="associateName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="occupation">Occupation</label>
-                            <input type="text" class="form-control" id="occupation" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
-                            <input type="tel" class="form-control" id="phoneNumber" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary" type="button">Save Associate</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>

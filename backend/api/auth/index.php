@@ -1,31 +1,51 @@
 <?php
-session_start();
-require '../config.php';
+require '../config.php';  // Your database connection file
+header('Content-Type: application/json');  // Set content type for JSON response
 
-// Get username and password from POST request
-$username = $_POST['username'];
-$password = $_POST['password'];
+$method = $_SERVER['REQUEST_METHOD'];
 
-try {
-    // Fetch the admin user from the database
-    $stmt = $pdo->prepare("SELECT * FROM admin_users WHERE username = :username");
-    $stmt->execute(['username' => $username]);
-    $admin = $stmt->fetch();
-
-    // Verify the password
-    if ($admin && password_verify($password, $admin['password'])) {
-        // Set session variable
-        $_SESSION['admin_logged_in'] = true;
-        $_SESSION['admin_username'] = $admin['username'];
-
-        // Redirect to the admin dashboard
-        header("Location: admin_dashboard.php");
-        exit();
-    } else {
-        // Invalid credentials
-        echo "Invalid username or password.";
-    }
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+// Check if the request method is POST (for login)
+if ($method === 'POST') {
+    authenticateUser($pdo, json_decode(file_get_contents('php://input'), true));
+} else {
+    http_response_code(405);  // Method not allowed
+    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
 }
-?>
+
+/**
+ * Handle user authentication (login)
+ *
+ * @param PDO $pdo
+ * @param array $data
+ */
+function authenticateUser($pdo, $data) {
+    if (isset($data['email']) && isset($data['password'])) {
+        $email = trim($data['email']);
+        $password = trim($data['password']);
+
+        try {
+            $stmt = $pdo->prepare("SELECT * FROM admins WHERE email = :email");
+            $stmt->execute(['email' => $email]);
+            $admin = $stmt->fetch();
+
+            if ($admin && password_verify($password, $admin['password'])) {
+                // Generate token or other session-related information
+                $token = bin2hex(random_bytes(16));  // Example token (use JWT or sessions in real cases)
+
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Login successful',
+                    'token' => $token,
+                    'username'=> $admin['username'],
+                      
+                ]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Invalid email or password']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Missing email or password']);
+    }
+}
